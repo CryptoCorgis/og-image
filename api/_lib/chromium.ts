@@ -13,34 +13,10 @@ async function getPage(isDev: boolean) {
     return _page;
 }
 
-export async function getPrintArtScreenshot(id: string, type: FileType, quality: number, isDev: boolean) {
+export async function getCorgiScreenshot(id: string, type: FileType, quality: number, width: number = 2048, isDev: boolean) {
     const page = await getPage(isDev);
-    await page.setViewport({ width: 3000, height: 4800 });
-    await page.goto(`https://pob.studio/hash/preview/print-art/${id}`);
-    const file = await page.screenshot({ type, quality, });
-    return file;
-}
-
-export async function getArtScreenshot(hash: string, type: FileType, quality: number, isDev: boolean) {
-    const page = await getPage(isDev);
-    await page.setViewport({ width: 1125, height: 1800 });
-    await page.goto(`https://pob.studio/hash/preview/art/${hash}`);
-    const file = await page.screenshot({ type, quality, });
-    return file;
-}
-
-export async function getPaletteScreenshot(address: string, type: FileType, quality: number, isDev: boolean) {
-    const page = await getPage(isDev);
-    await page.setViewport({ width: 1200, height: 627 });
-    await page.goto(`https://pob.studio/hash/preview/palette/${address}`);
-    const file = await page.screenshot({ type, quality, });
-    return file;
-}
-
-export async function getDefaultScreenshot(hash: string, title: string, subtitle: string = '',type: FileType, quality: number, isDev: boolean) {
-    const page = await getPage(isDev);
-    await page.setViewport({ width: 1200, height: 627 });
-    await page.goto(`https://pob.studio/hash/preview?hash=${hash}&title=${title}&subtitle=${subtitle}`);
+    await page.setViewport({ width, height: width });
+    await page.goto(`https://cryptocorgis.co/render/${id}?width=${width}`);
     const file = await page.screenshot({ type, quality, });
     return file;
 }
