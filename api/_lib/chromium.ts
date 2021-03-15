@@ -13,10 +13,10 @@ async function getPage(isDev: boolean) {
     return _page;
 }
 
-export async function getCorgiScreenshot(id: string, type: FileType, quality: number, width: number = 2048, isDev: boolean) {
+export async function getCorgiScreenshot(id: string, type: FileType, width: number = 2048, isDev: boolean) {
     const page = await getPage(isDev);
     await page.setViewport({ width, height: width });
     await page.goto(`https://cryptocorgis.co/render/${id}?width=${width}`);
-    const file = await page.screenshot({ type, quality, });
+    const file = await page.screenshot({ type, });
     return file;
 }
