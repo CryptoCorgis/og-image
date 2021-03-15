@@ -5,10 +5,11 @@ import { ParsedRequest } from './types';
 export function parseRequest(req: IncomingMessage) {
     console.log('HTTP ' + req.url);
     const { pathname, query } = parse(req.url || '/', true);
-    const { id, width  } = (query || {});
+    const { width  } = (query || {});
+    const [path, id] = (pathname as string).slice(1).split("/");
     const parsedRequest: ParsedRequest = {
-        id: id as string,
-        path: pathname as string,
+        path,
+        id,
         width: width ? parseInt(width as string, 10) : undefined
     };
     return parsedRequest;

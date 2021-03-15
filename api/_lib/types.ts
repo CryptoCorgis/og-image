@@ -1,7 +1,7 @@
 export type FileType = 'png' | 'jpeg';
 
 export interface ParsedRequest {
-    path: string;
     id: string;
+    path: string;
     width?: number;
 }

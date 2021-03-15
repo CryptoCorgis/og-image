@@ -11,10 +11,10 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
         console.log(parsedRequest);
         let file: Buffer = Buffer.alloc(0);
         if (parsedRequest.path === 'corgi') {
-            file = await getCorgiScreenshot((parsedRequest).id, 'png', 80, parsedRequest.width, isDev);
+            file = await getCorgiScreenshot((parsedRequest).id, 'jpeg', 80, parsedRequest.width, isDev);
         }
         res.statusCode = 200;
-        res.setHeader('Content-Type', `image/png`);
+        res.setHeader('Content-Type', `image/jpeg`);
         res.setHeader('Cache-Control', `public, immutable, no-transform, s-maxage=31536000, max-age=31536000`);
         res.end(file);
     } catch (e) {
