@@ -11,7 +11,7 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
         console.log(parsedRequest);
         let file: Buffer = Buffer.alloc(0);
         if (parsedRequest.path === 'corgi') {
-            file = await getCorgiScreenshot((parsedRequest).id, 'png', parsedRequest.width, isDev);
+            file = await getCorgiScreenshot((parsedRequest).id, 'png', parsedRequest.width, parsedRequest.height, isDev);
         }
         res.statusCode = 200;
         res.setHeader('Content-Type', `image/png`);
